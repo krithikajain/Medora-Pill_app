@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import client from '../api/client';
 
-const FileUpload = ({ session, onComplete }) => {
+const FileUpload = ({ session, onUploadSuccess }) => {
     const [file, setFile] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -26,7 +26,7 @@ const FileUpload = ({ session, onComplete }) => {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            onComplete(response.data.medications);
+            onUploadSuccess(response.data);
         } catch (err) {
             setError('Failed to process prescription. Please try again.');
             console.error(err);
