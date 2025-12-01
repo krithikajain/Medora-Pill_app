@@ -49,7 +49,9 @@ graph TD
 2.  **Tools:**
     -   **Calendar Tool:** A custom tool designed to interface with external calendar APIs (simulated for this prototype).
 3.  **LLM Power:**
-    -   Leverages **Google Gemini 2.0 Flash Lite** for both multimodal understanding (Vision) and complex reasoning.
+    -   Leverages **Google Gemini 2.0 Flash Lite** (via `Google-ADK`) for both multimodal understanding (Vision) and complex reasoning.
+4.  **Human-in-the-loop:**
+    -   **Terminal Oversight:** Real-time logging allows human verification of the AI's reasoning before scheduling.
 
 ---
 
@@ -122,8 +124,10 @@ Follow these instructions to set up the project locally.
 
 ---
 
-## 🏆 Submission Details
+## 🔮 Future Scope
 
--   **Track:** Concierge Agents
--   **Team:** [Your Name / Team Name]
--   **Video Demo:** [Link to YouTube Video]
+-   **Long-term Memory:** Implementing a persistent database (e.g., vector store) to remember user preferences and medication history over months.
+-   **MCP Integration:** Expanding the toolset using the Model Context Protocol (MCP) to connect with real-world pharmacy APIs for refill requests and drug interaction checks.
+
+---
+
