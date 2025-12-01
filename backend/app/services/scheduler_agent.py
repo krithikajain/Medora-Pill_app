@@ -31,6 +31,10 @@ class SchedulerAgent:
         - "Before bed" should be at Sleep Time ({user_context.sleep_time}).
         - "Every X hours" (e.g., Q4H, Q6H): Start at Wake Time ({user_context.wake_time}) and add X hours until Sleep Time.
         - "PRN" (As needed): If a frequency is given (e.g., Q4H), generate the max possible schedule. If no frequency (e.g., "for pain"), leave schedule empty or add a note if possible.
+        - **NORMALIZATION RULE**: You MUST rewrite the 'frequency' field to be a clean, natural English sentence.
+            - Replace abbreviations: "Q4H" -> "Every 4 hours", "PRN" -> "as needed", "PO" -> "Orally".
+            - Remove dosage information (e.g., "2 tab", "10mg") from the frequency field if it is present.
+            - Example: "2 tab Oral Q4H PRN for pain" -> "Orally every 4 hours as needed for pain".
         - **DEFAULT RULE**: If a medication is taken once daily but no specific time is mentioned (e.g., just "1 tablet"), schedule it AFTER LUNCH ({user_context.lunch_time}).
         - Be practical.
         
