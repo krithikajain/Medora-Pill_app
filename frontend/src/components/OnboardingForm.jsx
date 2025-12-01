@@ -34,6 +34,7 @@ const OnboardingForm = ({ onComplete }) => {
 
     return (
         <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
+            <p className="text-center text-blue-600 font-medium mb-2">AI-Powered Med Reminder</p>
             <h2 className="text-2xl font-bold mb-6 text-center">Let's get started</h2>
             {error && <div className="bg-red-100 text-red-700 p-3 rounded mb-4">{error}</div>}
             <form onSubmit={handleSubmit} className="space-y-4">
