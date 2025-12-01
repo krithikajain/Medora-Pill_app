@@ -97,6 +97,11 @@ const CalendarSync = ({ medications }) => {
                         },
                     };
 
+                    // Add recurrence if present
+                    if (med.recurrence) {
+                        event.recurrence = [med.recurrence];
+                    }
+
                     const request = window.gapi.client.calendar.events.insert({
                         'calendarId': 'primary',
                         'resource': event,

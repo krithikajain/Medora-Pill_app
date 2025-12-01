@@ -34,7 +34,17 @@ class SchedulerAgent:
         - **NORMALIZATION RULE**: You MUST rewrite the 'frequency' field to be a clean, natural English sentence.
             - Replace abbreviations: "Q4H" -> "Every 4 hours", "PRN" -> "as needed", "PO" -> "Orally".
             - Remove dosage information (e.g., "2 tab", "10mg") from the frequency field if it is present.
-            - Example: "2 tab Oral Q4H PRN for pain" -> "Orally every 4 hours as needed for pain".
+        
+        - **RECURRENCE RULE (RRULE)**:
+            - Based on the frequency and duration, generate a Google Calendar RRULE string for the 'recurrence' field.
+            - Examples:
+                - "Daily for 7 days" -> "RRULE:FREQ=DAILY;COUNT=7"
+                - "Every 2 days" -> "RRULE:FREQ=DAILY;INTERVAL=2"
+                - "Weekly for 4 weeks" -> "RRULE:FREQ=WEEKLY;COUNT=4"
+                - "Every 6 hours for 3 days" -> "RRULE:FREQ=DAILY;COUNT=3" (Note: Google Calendar handles sub-daily events by repeating the event itself, so the RRULE is usually just DAILY for the duration).
+            - If no duration is known, assume 1 week (COUNT=7) or leave None if it's PRN.
+            - If PRN, set recurrence to null.
+
         - **DEFAULT RULE**: If a medication is taken once daily but no specific time is mentioned (e.g., just "1 tablet"), schedule it AFTER LUNCH ({user_context.lunch_time}).
         - Be practical.
         

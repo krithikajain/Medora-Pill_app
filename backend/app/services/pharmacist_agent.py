@@ -22,23 +22,27 @@ class PharmacistAgent:
             {
             "name": "",
             "dosage": "",
-            "frequency": ""
+            "frequency": "",
+            "duration": "" 
             }
 
             ----------------------------
             WHAT TO EXTRACT (FOR EACH MEDICATION)
             ----------------------------
             1. **Name**
-            - Extract the exact drug name (brand or generic).
-            - If strength is embedded in the name (e.g., "Augmentin 625"), keep it in 'dosage', not in 'name'.
-            - Validate that the name is a real medication. If unsure, mark as "Unknown (possibly misread)".
+            - Extract the exact drug name.
 
             2. **Dosage**
-            - Extract strength and form (e.g., "500 mg", "1 tablet", "5 mL").
-            - If missing, infer from context only when absolutely clear.
+            - Extract strength and form.
 
             3. **Frequency**
-            - **TRANSLATE ALL ABBREVIATIONS** into plain English.
+            - TRANSLATE ABBREVIATIONS (e.g., "Q4H" -> "Every 4 hours").
+
+            4. **Duration**
+            - Extract the total duration if mentioned or calculable.
+            - Examples: "7 days", "2 weeks", "30 days".
+            - If quantity is given (e.g., "20 tabs, 1 daily"), calculate duration (20 days).
+            - If NOT mentioned, leave empty string "".
             - DO NOT use medical shorthand in the output.
             - Rules:
                 - "OD" -> "Once daily"
